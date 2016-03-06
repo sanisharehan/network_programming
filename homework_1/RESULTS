@@ -1,0 +1,86 @@
+RESULTS FILE for Homework#1
+
+Question 1: Iterative TCP netcat client server output results:
+
+// Server host
+>> ./netcatd 8777 > myfilecopy
+stderr: Client IP address is 127.0.0.1 and port number input is 8777
+
+// Client host
+>> cat common.o | ./netcat localhost 8777
+
+// Check diff in files (No differences between two files)
+>> diff common.o myfilecopy
+
+
+Question 2: Iterative UDP spdtest client server output results:
+
+// Server host
+>> ./spdtestd 8666 1024 1
+
+// Client host
+>> ./spdtest localhost 8666 1024
+Total time taken for 30 messages: 41 ms; Throughtput of client with msg size: 1024 is 749268
+
+(Server host) ./spdtestd 8666 1024 10
+(Client host) ./spdtest localhost 8666 1024
+Total time taken for 30 messages: 309 ms; Throughtput of client with msg size: 1024 is 99417
+
+(Server host) ./spdtestd 8666 1024 100
+(Client host) ./spdtest localhost 8666 1024
+Total time taken for 30 messages: 3015 ms; Throughtput of client with msg size: 1024 is 10189
+
+(Server host) ./spdtestd 8666 8192 1
+(Client host) ./spdtest localhost 8666 8192
+Total time taken for 30 messages: 47 ms; Throughtput of client with msg size: 8192 is 5228936
+
+(Server host) ./spdtestd 8666 8192 10
+(Client host) ./spdtest localhost 8666 8192
+Total time taken for 30 messages: 312 ms; Throughtput of client with msg size: 8192 is 787692
+
+(Server host) ./spdtestd 8666 8192 100
+(Client host) ./spdtest localhost 8666 8192
+Total time taken for 30 messages: 3015 ms; Throughtput of client with msg size: 8192 is 81512
+
+(Server host) ./spdtestd 8666 32768 1
+(Client host) ./spdtest localhost 8666 32768
+Total time taken for 30 messages: 42 ms; Throughtput of client with msg size: 32768 is 23405714
+
+(Server host) ./spdtestd 8666 32768 10
+(Client host) ./spdtest localhost 8666 32768
+Total time taken for 30 messages: 310 ms; Throughtput of client with msg size: 32768 is 3171096
+
+(Server host) ./spdtestd 8666 32768 100
+(Client host) ./spdtest localhost 8666 32768
+Total time taken for 30 messages: 3012 ms; Throughtput of client with msg size: 32768 is 326374
+
+
+******* Additional Message size inputs ********
+
+(Server host) ./spdtestd 8666 40960 100
+(Client host) ./spdtest localhost 8666 40960
+Total time taken for 30 messages: 3011 ms; Throughtput of client with msg size: 40960 is 408103
+
+(Server host) ./spdtestd 8666 51200 100
+(Client host) ./spdtest localhost 8666 51200
+Total time taken for 30 messages: 3014 ms; Throughtput of client with msg size: 51200 is 509621
+
+(Server host) ./spdtestd 8666 64512 100
+(Client host) ./spdtest localhost 8666 64512
+Total time taken for 30 messages: 3016 ms; Throughtput of client with msg size: 64512 is 641697
+
+(Server host) ./spdtestd 8666 65535 100
+(Client host) ./spdtest localhost 8666 65535
+No data transmission
+
+(Server host) ./spdtestd 8666 65507 100
+(Client host) ./spdtest localhost 8666 65507
+Total time taken for 30 messages: 3016 ms; Throughtput of client with msg size: 65507 is 651594
+
+(Server host) ./spdtestd 8666 65508 100
+(Client host) ./spdtest localhost 8666 65508
+No data transmission
+
+Hence, the largest data size allowed in my UDP program is 65507 bytes.
+Also, seeing the pattern in throughput numbers it is observed that throughput decreases by increasing the network latency, keeping the message size constant.
+

@@ -1,0 +1,81 @@
+There are in total 6 files writen for the implementation of solutions corresponding
+to problems mentioned in Homework#1. These files are described below:
+
+common.c: 
+This files saves all the common functions or proedures used across the main programs
+such as functions to create active as well as passive sockets for TCP/UDP transport
+protocols. These functions are reused from text book examples.
+
+
+netcat.c: 
+TCP client program to get data from stdin and send to the server on a specified 
+port. The implementation is similar to inherent netcat service. The program has
+TCPnetcat function which connects to TCP server at the specific service port,
+reads data from stdin and writes it to the server.
+
+
+netcatd.c:
+Iterative TCP server implementation. The server reads data from network and displays
+to stdout. Also, it prints the client IP address and service port number to stderr.
+
+
+spdtest.c:
+UDP client program used to detrmine network latency. This program uses UDP transport
+protocol to send packets of specified lengths to the server. The client sends 30 
+messages of same size repeatedly to the server, reads acknowledgement for each message,
+finds total time taken in sending and receiving data and finally computes the 
+throughput number using formula
+
+	throughput = 30 * msg_size/Total_time_in_secs
+
+The client has a function UDPLatency to perform the above mentioned tasks.
+
+
+spdtestd.c:
+Iterative UDP server program used to test network peed for data transmission.
+This program reads message of specified length from client and sends the acknowledgment
+with message sequence number after a specified delay. This function is performed
+30 times before the server exits.
+
+
+Makefile:
+This file saves list of all client and server programs and their dependable object files.
+It compiles the programs within a directory and generate the corresponding executable
+files.
+
+
+HOW TO COMPILE AND RUN PROGRAMS
+Below are the steps for compiling and running the programs on Linux.
+
+a. To compile all the programs:
+> make all
+
+
+b. To run the 'netcat' server and client:
+SYNTAX:
+(server host)>	./netcatd service_port > <any_file_name_for_saving_output>
+(client host)>	cat any_file | ./netcat server_host_name service_port
+
+EXAMPLE:
+(server host)> ./netcatd 8666 > myfilecopy
+(client host)> cat Makefile | ./netcat localhost 8666 
+
+
+c. To run 'spdtest' server and client:
+SYNTAX:
+(server host)>	./spdtestd service_port msg_size delay_time_in_ms
+(client host)>	./spdtest server_host_name service_port msg_size
+
+EXAMPLE:
+(server host)> ./spdtestd 8777 1024 10
+(client host)> ./spdtest localhost 8777 1024
+
+
+d. To clean all object files
+> make clean
+
+
+REFERENCES:
+1. Text Book Contents
+2. http://www.tutorialspoint.com/c_standard_library/
+3. http://www-sop.inria.fr/members/Vincenzo.Mancuso/ReteInternet/05_udp.pdf   
