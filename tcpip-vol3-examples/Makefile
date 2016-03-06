@@ -7,19 +7,19 @@
 
 INCLUDE =
 
-CLNTS = TCPecho TCPdaytime TCPtecho UDPecho UDPtime netcat UDPLatencyClient
-SERVS = TCPdaytimed TCPechod TCPmechod UDPtimed daytimed netcatd new_netcatd UDPserver
+CLNTS = TCPecho TCPdaytime TCPtecho UDPecho UDPtime netcat spdtest
+SERVS = TCPdaytimed TCPechod TCPmechod UDPtimed daytimed netcatd new_netcatd spdtestd
 OTHER = superd TCPmtechod
 
 DEFS = -D_BSD_SOURCE
 CFLAGS = -W -pedantic -ansi -g ${DEFS} ${INCLUDE}
 
 HDR =
-CSRC = TCPecho.c TCPdaytime.c TCPtecho.c UDPecho.c UDPtime.c netcat.c UDPLatencyClient.c
+CSRC = TCPecho.c TCPdaytime.c TCPtecho.c UDPecho.c UDPtime.c netcat.c spdtest.c
 CXSRC = connectTCP.c connectUDP.c connectsock.c errexit.c
 
 SSRC = TCPdaytimed.c TCPechod.c TCPmechod.c TCPmtechod.c UDPtimed.c \
-	daytimed.c superd.c netcatd.c new_netcatd.c UDPserver.c
+	daytimed.c superd.c netcatd.c new_netcatd.c spdtestd.c
 SXSRC = passiveTCP.c passiveUDP.c passivesock.c sv_funcs.c
 
 CXOBJ = connectTCP.o connectUDP.o connectsock.o errexit.o
@@ -82,8 +82,8 @@ netcatd: netcatd.o
 superd: superd.o
 new_netcatd:new_netcatd.o
 netcat:netcat.o
-UDPserver:UDPserver.o
-UDPLatencyClient:UDPLatencyClient.o
+spdtestd:spdtestd.o
+spdtest:spdtest.o
 FRC:
 	
 # DO NOT DELETE THIS LINE - maketd DEPENDS ON IT
