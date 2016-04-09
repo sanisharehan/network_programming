@@ -1,0 +1,65 @@
+RESULTS FOR VARIOUS CLIENT REQUESTS:
+====================================
+
+Server host:
+============
+sanisha@sanisha-VirtualBox:~/network_programming/homework_2$ ./207httpd 8777 /home/sanisha/Downloads
+Client IP address: 127.0.0.1 and Port number: 12731 
+The input request is GET / HTTP/1.1
+Client IP address: 127.0.0.1 and Port number: 14011 
+The input request is GET /ball.gif HTTP/1.1
+Client IP address: 127.0.0.1 and Port number: 14523 
+The input request is GET /example.jpg HTTP/1.1
+
+
+Client host:
+============
+Example 1:
+=========
+> wget http://localhost:8777/
+
+--2016-04-01 18:00:37--  http://localhost:8777/
+Resolving localhost (localhost)... 127.0.0.1
+Connecting to localhost (localhost)|127.0.0.1|:8777... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 12334 (12K) [text/html]
+Saving to: ‘index.html’
+
+100%[=====================================================================================================>] 12,334      --.-K/s   in 0s      
+
+2016-04-01 18:00:37 (181 MB/s) - ‘index.html’ saved [12334/12334]
+
+
+Example 2:
+==========
+> wget http://localhost:8777/ball.gif
+
+--2016-04-01 18:03:28--  http://localhost:8777/ball.gif
+Resolving localhost (localhost)... 127.0.0.1
+Connecting to localhost (localhost)|127.0.0.1|:8777... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 12687 (12K) [image/gif]
+Saving to: ‘ball.gif’
+
+100%[=====================================================================================================>] 12,687      --.-K/s   in 0s      
+
+2016-04-01 18:03:28 (207 MB/s) - ‘ball.gif’ saved [12687/12687]
+
+
+Example 3:
+==========
+wget http://localhost:8777/example.jpg
+--2016-04-01 18:05:45--  http://localhost:8777/example.jpg
+Resolving localhost (localhost)... 127.0.0.1
+Connecting to localhost (localhost)|127.0.0.1|:8777... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 125553 (123K) [image/jpeg]
+Saving to: ‘example.jpg’
+
+100%[=====================================================================================================>] 125,553     --.-K/s   in 0.001s  
+
+2016-04-01 18:05:45 (140 MB/s) - ‘example.jpg’ saved [125553/125553]
+
+
+
+

@@ -1,0 +1,44 @@
+TO COMPILE AND RUN PROGRAMS
+===========================
+
+a. To compile the program
+> make
+
+b. To run the server
+SYNTAX
+======
+(server host)> ./207httpd <port> <roor_directory>
+
+EXAMPLE
+=======
+(server host)> ./207httpd 8777 /home/sanisha/Downloads
+
+c. To test the server using command line utilities
+(client host)> wget http://localhost:8777/static.html
+
+d. To clean all object files
+> make clean
+
+
+DESCRIPTION OF FILES:
+=====================
+There are in total 2 files written for the implementation of solutions corresponding
+to problem mentioned in Homework#2. These files are described below:
+
+common.c:
+=========
+This files saves all the common functions or procedures used across the main programs
+such as function to create passive TCP socket, function for providing error 
+handling. These functions are reused from text book examples.
+
+207httpd.c:
+===========
+This file contains the server implementation for TCP multi-threaded web application.
+The server has various procedures/functions to provide desired functionality.
+
+
+REFERENCES:
+===========
+1. Text Book Contents
+2. http://www.tutorialspoint.com/c_standard_library/
+3. References from Homework

@@ -8,7 +8,7 @@
 INCLUDE =
 
 CLNTS = TCPecho TCPdaytime TCPtecho UDPecho UDPtime netcat spdtest
-SERVS = TCPdaytimed TCPechod TCPmechod UDPtimed daytimed netcatd new_netcatd spdtestd
+SERVS = TCPdaytimed TCPechod TCPmechod UDPtimed daytimed netcatd new_netcatd spdtestd 207httpd
 OTHER = superd TCPmtechod
 
 DEFS = -D_BSD_SOURCE
@@ -19,7 +19,7 @@ CSRC = TCPecho.c TCPdaytime.c TCPtecho.c UDPecho.c UDPtime.c netcat.c spdtest.c
 CXSRC = connectTCP.c connectUDP.c connectsock.c errexit.c
 
 SSRC = TCPdaytimed.c TCPechod.c TCPmechod.c TCPmtechod.c UDPtimed.c \
-	daytimed.c superd.c netcatd.c new_netcatd.c spdtestd.c
+	daytimed.c superd.c netcatd.c new_netcatd.c spdtestd.c 207httpd.c
 SXSRC = passiveTCP.c passiveUDP.c passivesock.c sv_funcs.c
 
 CXOBJ = connectTCP.o connectUDP.o connectsock.o errexit.o
@@ -39,6 +39,9 @@ superd: ${SXOBJ} superd.o sv_funcs.o
 	${CC} -o $@ ${CFLAGS} $@.o ${SXOBJ} sv_funcs.o
 
 TCPmtechod: TCPmtechod.o ${SXOBJ}
+	${CC} -o $@ ${CFLAGS} $@.o ${SXOBJ} -lpthread
+
+207httpd: 207httpd.o ${SXOBJ}
 	${CC} -o $@ ${CFLAGS} $@.o ${SXOBJ} -lpthread
 
 clients: ${CLNTS}

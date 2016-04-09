@@ -65,6 +65,17 @@ main(int argc, char *argv[])
 		else
 			errexit("accept: %s\n", strerror(errno));
 	}
+	
+	/* Print the IP address and Port number of slave socket */
+	struct sockaddr_in slave_sock_in;
+	int addlen = sizeof(slave_sock_in);
+	/*memset(&slave_sock_in, 0, sizeof(slave_sock_in));
+	//slave_sock_in.sin_family = AF_INET; */
+	int a = getsockname(slave_sock, (struct sockaddr *)&slave_sock_in, &addlen);
+	
+	inet_ntop(AF_INET, &(slave_sock_in.sin_addr), ip_address, INET_ADDRSTRLEN);	
+	fprintf(stderr, "Server IP address is %s\n", ip_address);
+	fprintf(stderr, "The slave socket port is %i \n", ntohs(slave_sock_in.sin_port));
 
 	/* 1.To print client's IP address and port number on stderr */   
 	inet_ntop(AF_INET, &(client_sin.sin_addr), ip_address, INET_ADDRSTRLEN);	
