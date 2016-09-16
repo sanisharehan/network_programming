@@ -1,0 +1,63 @@
+###############################################################################
+# This file contains the instructions for running the application.
+###############################################################################
+
+#### Initial Set-up ####
+
+Before running the application, make sure the below libraries are installed
+in the system.
+
+sudo apt-get install sqlite3
+sudo apt-get install libsqlite3-dev
+sudo apt-get install python-wxgtk2.8
+
+#### Server Deployment ####
+
+1. To compile the server:
+> make
+
+2. To run the server:
+** MASTER
+> ./mindSync <service_port> <master_port>
+> ./mindSync 8777 9000
+
+**SLAVE
+> ./mindSync 8778 9001
+
+NOTE: The server port numbers are fixed at client. Hence, please use the above
+mentioned port numbers for running the server.
+
+#### Client Deployment ####
+
+(Terminal 1): python client_gui.py localhost
+(Terminal 2): python client_gui.py localhost
+
+###############################################################################
+
+#### Application Testing on telnet (Optional) ####
+
+(terminal 1) : telnet localhost 8777
+Enter the action:username:password combination
+1:hello:hello
+SUCCESShello_0_0_0substance_0_sani_matters
+substance_100_sani_mattersclear
+abortive_100_sani_action
+abortive_200_sani_actionmeasure
+
+
+(terminal 2) : telnet localhost 8777
+Enter the action:username:password combination
+2:lgin:sts
+USER_NAME_ERRORConnection closed by foreign host.
+
+
+(terminal 3) : telnet localhost 8777
+Enter the action:username:password combination
+2:sani:pass1234
+SUCCESSsani_2200_300_0substance_0_hello_matters
+substance_100_hello_matters
+abortive_100_hello_clearaction
+abortive_200_hello_actionnopes
+fetch_200_hello_measureresults
+
+** Game will start between these two players **
