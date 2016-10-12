@@ -9,6 +9,7 @@
 #include <string.h>
 #include <netdb.h>
 
+// Passive Sock
 int
 passiveSock(const char *service, const char *transport, int qlen) {
 	struct servent *pserv ;
